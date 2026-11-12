@@ -113,7 +113,21 @@ and <b>virtualNAS</b> with the name of your partition (eg. sdb1) and folder you 
 
 If using the ```mount``` command, linux will only keep the drive mounted until the next reboot. To make this mount permanent, we have to edit /etc/fstab.
 
-The UUID of the partition is needed for this part. START HERE
+The UUID of the partition is needed for this part so the OS knows what drive to permanently mount.
+
+Type ```sudo blkid``` and find the specific drive(s) UUID that you need to mount. Save these UUIDs.
+
+We need to edit the fstab file. Type ```sudo nano /etc/fstab``` and add a new line for each drive.
+
+Add ```UUID=ADD-DRIVE-UUID-HERE /mnt/YOUR-MOUNT-FOLDER auto defaults,auto,users,rw,nofail 0 0``` for each drive.
+
+When you are finished adding all drives, press ```ctrl+o``` to save changes then ```ctrl+x``` to exit the editor.
+
+Now reboot the system by typing ```sudo reboot now```
+
+
+
+
 
 
 
