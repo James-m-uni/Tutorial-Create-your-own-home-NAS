@@ -119,7 +119,7 @@ Type ```sudo blkid``` and find the specific drive(s) UUID that you need to mount
 
 We need to edit the fstab file. Type ```sudo nano /etc/fstab``` and add a new line for each drive.
 
-Add ```UUID=ADD-DRIVE-UUID-HERE /mnt/YOUR-MOUNT-FOLDER auto defaults,auto,users,rw,nofail 0 0``` for each drive.
+Add ```UUID=ADD-DRIVE-UUID-HERE /mnt/YOUR-MOUNT-FOLDER auto defaults,nofail,rw,users 0 0``` for each drive.
 
 When you are finished adding all drives, press ```ctrl+o``` to save changes then ```ctrl+x``` to exit the editor.
 
@@ -140,6 +140,8 @@ Type into the command line ```sudo useradd NASowner``` then enter.
 To create a password for this new user type ```sudo passwd NASowner``` which will then prompt you to create a new password.
 
 After creating this user we need to give it access to the folder in /mnt we created. This can be done by typing ```sudo chown -R NASowner:NASowner /mnt/NAS```.
+
+Then type ```sudo chmod -R 700 /path to share```
 
 Now we need to tell samba what partition we want to share over the network. Type ```sudo nano /etc/samba/smb.conf``` which will open the file smb.conf in the nano text editor.
 
